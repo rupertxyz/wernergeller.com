@@ -17,7 +17,7 @@ function Gallery() {
         records.forEach((rec) => allRecs.push(rec));
         fetchNextPage();
       })
-      .then((result) => setPaintings(allRecs));
+      .then(() => setPaintings(allRecs));
   }, []);
 
   function updateRecord(recId, titel) {
@@ -75,7 +75,6 @@ function Gallery() {
                 style={{ display: 'block', cursor: 'zoom-in' }}
                 width={250}
                 src={painting.get('Bild')[0].thumbnails.large.url}
-                data-url={painting.get('Bild')[0].thumbnails.full.url}
                 // onClick={openFullImage}
                 alt={painting.get('Titel')}
               />
