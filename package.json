@@ -21,7 +21,9 @@
     "gatsby-plugin-image": "^2.24.0",
     "gatsby-plugin-sharp": "^4.24.0",
     "gatsby-plugin-sitemap": "^5.24.0",
+    "gatsby-remark-emojis": "^0.4.3",
     "gatsby-source-filesystem": "^4.24.0",
+    "gatsby-transformer-remark": "^5.24.0",
     "gatsby-transformer-sharp": "^4.24.0",
     "react": "^18.1.0",
     "react-dom": "^18.1.0"
