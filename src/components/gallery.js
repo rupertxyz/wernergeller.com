@@ -5,9 +5,11 @@ const wrapper = {
   display: 'grid',
 };
 
-const base = new Airtable({ apiKey: 'keyZynWxF2U4Xhhpi' }).base(
-  'appKjIv7utFmqAkdT'
-);
+console.log('api key', process.env.GATSBY_AIRTABLE_API_KEY);
+
+const base = new Airtable({
+  apiKey: process.env.GATSBY_AIRTABLE_API_KEY,
+}).base('appKjIv7utFmqAkdT');
 
 function Gallery() {
   const [paintings, setPaintings] = useState([]);
