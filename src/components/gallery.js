@@ -49,12 +49,6 @@ function Gallery() {
     console.log(event.target.dataset.id);
   }
 
-  // function openFullImage(event) {
-  //   if (window !== 'undefined') {
-  //     window.open(event.target.dataset.url);
-  //   }
-  // }
-
   return (
     <>
       <h1>Collection Werner Geller (1928 - 2017)</h1>
