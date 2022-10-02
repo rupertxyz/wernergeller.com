@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import Airtable from 'airtable';
 
 const base = new Airtable({
-  apiKey: process.env.GATSBY_AIRTABLE_API_KEY,
+  apiKey: process.env.AIRTABLE_API_KEY,
 }).base('appKjIv7utFmqAkdT');
 
 function Gallery() {
