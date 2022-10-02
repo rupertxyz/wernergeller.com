@@ -1,4 +1,5 @@
-import * as React from 'react';
+import React from 'react';
+import Gallery from '../components/gallery';
 
 const pageStyles = {
   color: '#232129',
@@ -19,7 +20,7 @@ const links = [
 const IndexPage = () => {
   return (
     <main>
-      <h1>HELLO</h1>
+      <Gallery></Gallery>
     </main>
   );
 };
