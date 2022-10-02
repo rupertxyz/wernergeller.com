@@ -36,14 +36,20 @@ function Gallery() {
           gap: '20px',
         }}
       >
-        {paintings.map((painting) => (
-          <>
+        {paintings.map((painting, i) => (
+          <div key={i}>
             <img
               style={{ display: 'block' }}
               width={250}
               src={painting.get('Bild')[0].thumbnails.large.url}
             />
-          </>
+            <h3 style={{ textAlign: 'center', marginBottom: '0' }}>
+              {painting.get('Titel')}
+            </h3>
+            <p style={{ textAlign: 'center', margin: '0' }}>
+              {painting.get('Breite (cm)')} x {painting.get('Höhe (cm)')} (cm)
+            </p>
+          </div>
         ))}
       </div>
     </>
