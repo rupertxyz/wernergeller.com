@@ -11,7 +11,7 @@ function Gallery() {
   useEffect(() => {
     const allRecs = [];
 
-    const result = base('Paintings')
+    base('Paintings')
       .select()
       .eachPage((records, fetchNextPage) => {
         records.forEach((rec) => allRecs.push(rec));
@@ -49,11 +49,11 @@ function Gallery() {
     console.log(event.target.dataset.id);
   }
 
-  function openFullImage(event) {
-    if (window !== 'undefined') {
-      window.open(event.target.dataset.url);
-    }
-  }
+  // function openFullImage(event) {
+  //   if (window !== 'undefined') {
+  //     window.open(event.target.dataset.url);
+  //   }
+  // }
 
   return (
     <>
@@ -76,7 +76,8 @@ function Gallery() {
                 width={250}
                 src={painting.get('Bild')[0].thumbnails.large.url}
                 data-url={painting.get('Bild')[0].thumbnails.full.url}
-                onClick={openFullImage}
+                // onClick={openFullImage}
+                alt={painting.get('Titel')}
               />
               <div
                 style={{
