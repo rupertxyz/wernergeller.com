@@ -50,7 +50,9 @@ function Gallery() {
   }
 
   function openFullImage(event) {
-    window.open(event.target.dataset.url);
+    if (window !== 'undefined') {
+      window.open(event.target.dataset.url);
+    }
   }
 
   return (
