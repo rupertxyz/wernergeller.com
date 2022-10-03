@@ -1,9 +1,9 @@
 import React, { useEffect, useState } from 'react';
 import Airtable from 'airtable';
 
-Airtable.configure({ apiKey: process.env.GATSBY_AIRTABLE_API_KEY });
+Airtable.configure({ apiKey: process.env.AIRTABLE_API_KEY });
 
-console.log("What's the API key?", process.env.GATSBY_AIRTABLE_API_KEY);
+console.log("What's the API key?", process.env.AIRTABLE_API_KEY);
 
 const base = Airtable.base('appKjIv7utFmqAkdT');
 
