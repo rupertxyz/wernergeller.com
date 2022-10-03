@@ -1,9 +1,11 @@
 import React, { useEffect, useState } from 'react';
 import Airtable from 'airtable';
 
-const base = new Airtable({
-  apiKey: process.env.AIRTABLE_API_KEY,
-}).base('appKjIv7utFmqAkdT');
+Airtable.configure({ apiKey: process.env.GATSBY_AIRTABLE_API_KEY });
+
+console.log("What's the API key?", process.env.GATSBY_AIRTABLE_API_KEY);
+
+const base = Airtable.base('appKjIv7utFmqAkdT');
 
 function Gallery() {
   const [paintings, setPaintings] = useState([]);
@@ -49,6 +51,10 @@ function Gallery() {
     console.log(event.target.dataset.id);
   }
 
+  function openFullImage(event) {
+    window.open(event.target.dataset.full);
+  }
+
   return (
     <>
       <h1>Collection Werner Geller (1928 - 2017)</h1>
@@ -69,7 +75,8 @@ function Gallery() {
                 style={{ display: 'block', cursor: 'zoom-in' }}
                 width={250}
                 src={painting.get('Bild')[0].thumbnails.large.url}
-                // onClick={openFullImage}
+                onClick={openFullImage}
+                data-full={painting.get('Bild')[0].thumbnails.full.url}
                 alt={painting.get('Titel')}
               />
               <div
