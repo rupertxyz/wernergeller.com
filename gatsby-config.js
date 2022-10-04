@@ -4,8 +4,9 @@ require('dotenv').config({
 
 module.exports = {
   siteMetadata: {
-    title: `wernergeller.com`,
-    siteUrl: `https://www.yourdomain.tld`,
+    author: `Rupert Arnold Hoffschmidt-McDonnell`,
+    title: `Collection Werner Geller`,
+    siteUrl: `https://www.wernergeller.com`,
   },
   plugins: [
     {
