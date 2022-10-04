@@ -11,4 +11,12 @@ const IndexPage = () => {
 
 export default IndexPage;
 
-export const Head = () => <title>Home Page</title>;
+export const Head = () => (
+  <>
+    <title>Collection Werner Geller</title>
+    <meta
+      name="description"
+      content="Eine Website mit allen Bildern von Werner Geller (1928 - 2017)"
+    ></meta>
+  </>
+);
