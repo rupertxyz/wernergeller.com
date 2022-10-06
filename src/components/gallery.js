@@ -128,9 +128,16 @@ function Gallery() {
                           border: '1px solid black',
                         }}
                       >
-                        {uniqueStandorte.map((standort) => (
-                          <option>{standort}</option>
-                        ))}
+                        <option value="">Standort auswählen</option>
+                        {uniqueStandorte.map((standort) => {
+                          if (painting.get('Standort') !== undefined) {
+                            return (
+                              <option selected="selected">{standort}</option>
+                            );
+                          } else {
+                            return <option>{standort}</option>;
+                          }
+                        })}
                       </select>
                     </div>
                     <input
