@@ -20,13 +20,14 @@ function Gallery() {
       .then(() => setPaintings(allRecs));
   }, []);
 
-  function updateRecord(recId, titel) {
+  function updateRecord(recId, titel, standort) {
     base('Paintings').update(
       [
         {
           id: recId,
           fields: {
             Titel: titel,
+            Standort: standort,
           },
         },
       ],
@@ -44,7 +45,12 @@ function Gallery() {
 
   function updateRec(event) {
     event.preventDefault();
-    updateRecord(event.target.dataset.id, event.target.form[0].value);
+    updateRecord(
+      event.target.dataset.id,
+      event.target.form[0].value,
+      event.target.form[1].value
+    );
+    console.log(event);
     console.log(event.target.form[0].value);
     console.log(event.target.dataset.id);
   }
@@ -52,6 +58,13 @@ function Gallery() {
   function openFullImage(event) {
     window.open(event.target.dataset.full);
   }
+
+  console.log(paintings.map((painting) => painting.get('Standort')));
+
+  const uniqueStandorte = paintings
+    .map((painting) => painting.get('Standort'))
+    .filter((standort) => standort)
+    .filter((standort, i, arr) => arr.indexOf(standort) === i);
 
   return (
     <>
@@ -84,17 +97,50 @@ function Gallery() {
                   marginTop: '10px',
                 }}
               >
-                <form>
-                  <input
-                    type="text"
-                    placeholder={painting.get('Titel')}
-                  ></input>
-                  <input
-                    type="submit"
-                    value="Submit"
-                    onClick={updateRec}
-                    data-id={painting.id}
-                  ></input>
+                <form style={{ width: '100%' }}>
+                  <div
+                    style={{
+                      display: 'flex',
+                      justifyContent: 'space-between',
+                    }}
+                  >
+                    <div style={{ marginRight: '2px', flex: '2' }}>
+                      <input
+                        type="text"
+                        placeholder={painting.get('Titel')}
+                        style={{
+                          display: 'block',
+                          WebkitBoxSizing: 'border-box',
+                          width: '100%',
+                          height: '25px',
+                          padding: '5px',
+                          margin: '0',
+                          border: '1px solid black',
+                        }}
+                      ></input>
+                      <select
+                        style={{
+                          display: 'block',
+                          WebkitBoxSizing: 'border-box',
+                          width: '100%',
+                          height: '25px',
+                          marginTop: '2px',
+                          border: '1px solid black',
+                        }}
+                      >
+                        {uniqueStandorte.map((standort) => (
+                          <option>{standort}</option>
+                        ))}
+                      </select>
+                    </div>
+                    <input
+                      type="submit"
+                      value="Submit"
+                      onClick={updateRec}
+                      data-id={painting.id}
+                      style={{ flex: 0.5 }}
+                    ></input>
+                  </div>
                 </form>
               </div>
               <p style={{ textAlign: 'center', margin: '0' }}>
