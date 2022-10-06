@@ -107,7 +107,7 @@ function Gallery() {
                     <div style={{ marginRight: '2px', flex: '2' }}>
                       <input
                         type="text"
-                        placeholder={painting.get('Titel')}
+                        value={painting.get('Titel')}
                         style={{
                           display: 'block',
                           WebkitBoxSizing: 'border-box',
