@@ -135,7 +135,7 @@ function Gallery() {
                     </div>
                     <input
                       type="submit"
-                      value="Submit"
+                      value="Abschicken"
                       onClick={updateRec}
                       data-id={painting.id}
                       style={{ flex: 0.5 }}
