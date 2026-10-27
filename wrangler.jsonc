@@ -1,0 +1,15 @@
+{
+  "$schema": "node_modules/wrangler/config-schema.json",
+  "name": "wernergeller-site",
+  "compatibility_date": "2026-10-23",
+  "observability": {
+    "enabled": true
+  },
+  "routes": [
+    { "pattern": "wernergeller.com", "custom_domain": true },
+    { "pattern": "www.wernergeller.com", "custom_domain": true }
+  ],
+  "assets": {
+    "directory": "dist"
+  }
+}

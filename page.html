@@ -1,0 +1,90 @@
+<!doctype html>
+<html lang="de">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Sammlung Werner Geller (1928–2017)</title>
+<meta name="description" content="Alle Bilder des Malers Werner Geller (1928–2017) in einer Sammlung.">
+<meta property="og:title" content="Sammlung Werner Geller (1928–2017)">
+<meta property="og:description" content="Alle Bilder des Malers Werner Geller in einer Sammlung.">
+<meta property="og:image" content="https://wernergeller.com/og.jpg">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="icon" href="icon.png">
+<style>
+  :root { --bg: #faf9f6; --text: #1d1c1a; --muted: #77736b; --line: #e6e3dc; }
+  * { box-sizing: border-box; }
+  body { margin: 0; background: var(--bg); color: var(--text); font: 16px/1.5 Georgia, 'Times New Roman', serif; }
+  header { max-width: 1400px; margin: 0 auto; padding: 56px 24px 32px; }
+  h1 { font-weight: 400; font-size: 40px; line-height: 1.15; margin: 0 0 8px; }
+  header p { margin: 0; color: var(--muted); font: 15px/1.5 -apple-system, 'Segoe UI', sans-serif; }
+  main { max-width: 1400px; margin: 0 auto; padding: 0 24px 80px; display: grid; grid-template-columns: repeat(auto-fill, minmax(260px, 1fr)); gap: 40px 32px; align-items: start; }
+  figure { margin: 0; }
+  figure button { display: block; width: 100%; padding: 0; border: 0; background: none; cursor: zoom-in; }
+  figure img { display: block; width: 100%; height: auto; aspect-ratio: 3 / 4; object-fit: contain; background: var(--line); }  /* one box shape for every picture, so the rows line up */
+  figcaption { margin-top: 10px; font-size: 16px; }
+  figcaption span { display: block; color: var(--muted); font: 13px/1.5 -apple-system, 'Segoe UI', sans-serif; }
+  dialog { width: 100vw; height: 100dvh; max-width: none; max-height: none; margin: 0; padding: 0; border: 0; background: #111110f2; color: #f2f0eb; }
+  dialog[open] { display: grid; grid-template-rows: 1fr auto; }
+  dialog img { width: 100%; height: 100%; object-fit: contain; padding: 24px 72px 0; min-height: 0; }
+  dialog p { margin: 0; padding: 16px 24px 24px; text-align: center; }
+  dialog p span { color: #a8a49b; font: 13px -apple-system, 'Segoe UI', sans-serif; margin-left: 10px; }
+  dialog button { position: absolute; border: 0; background: none; color: inherit; font: 32px/1 -apple-system, sans-serif; padding: 16px; cursor: pointer; opacity: .75; }
+  dialog button:hover { opacity: 1; }
+  .close { top: 8px; right: 8px; } .prev { left: 8px; top: 50%; translate: 0 -50%; } .next { right: 8px; top: 50%; translate: 0 -50%; }
+  :focus-visible { outline: 2px solid currentColor; outline-offset: 3px; }
+  @media (max-width: 600px) {
+    header { padding: 32px 16px 24px; } h1 { font-size: 30px; }
+    main { padding: 0 16px 48px; grid-template-columns: 1fr 1fr; gap: 24px 16px; }
+    figcaption { font-size: 14px; }
+    dialog img { padding: 56px 0 0; } .prev, .next { top: auto; bottom: 8px; translate: none; }
+  }
+</style>
+</head>
+<body>
+<header>
+  <h1>Werner Geller (1928–2017)</h1>
+  <p>Sammlung mit {{count}} Bildern</p>
+</header>
+<main>
+{{tiles}}
+</main>
+<dialog id="view" aria-label="Bild">
+  <img alt="">
+  <p></p>
+  <button class="close" aria-label="Schließen">×</button>
+  <button class="prev" aria-label="Vorheriges Bild">‹</button>
+  <button class="next" aria-label="Nächstes Bild">›</button>
+</dialog>
+<script>
+  const data = {{data}}, view = document.getElementById('view'), big = view.querySelector('img'), cap = view.querySelector('p');
+  let at = 0;
+  function show(i) {
+    at = (i + data.length) % data.length;
+    const [id, title, size] = data[at];
+    big.src = `img/${id}-l.webp`; big.alt = title;
+    cap.textContent = title;
+    if (size) cap.append(Object.assign(document.createElement('span'), { textContent: size }));
+    new Image().src = `img/${data[(at + 1) % data.length][0]}-l.webp`;  // the next picture is ready before it is needed
+  }
+  document.querySelector('main').addEventListener('click', (e) => {
+    const b = e.target.closest('button[data-i]');
+    if (b) { show(+b.dataset.i); view.showModal(); }
+  });
+  view.querySelector('.close').onclick = () => view.close();
+  view.querySelector('.prev').onclick = () => show(at - 1);
+  view.querySelector('.next').onclick = () => show(at + 1);
+  big.onclick = () => view.close();
+  document.addEventListener('keydown', (e) => {
+    if (!view.open) return;
+    if (e.key === 'ArrowLeft') show(at - 1);
+    if (e.key === 'ArrowRight') show(at + 1);
+  });
+  let x0 = null;  // swipe on phones
+  view.addEventListener('touchstart', (e) => (x0 = e.touches[0].clientX), { passive: true });
+  view.addEventListener('touchend', (e) => {
+    const dx = e.changedTouches[0].clientX - x0;
+    if (Math.abs(dx) > 50) show(at + (dx < 0 ? 1 : -1));
+  });
+</script>
+</body>
+</html>
