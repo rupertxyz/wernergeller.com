@@ -5,7 +5,7 @@
   "description": "Collection Werner Geller: a static gallery built from Airtable and hosted on Cloudflare",
   "scripts": {
     "build": "node build.mjs",
-    "deploy": "wrangler deploy",
+    "deploy": "node build.mjs && wrangler deploy",
     "preview": "wrangler dev"
   },
   "dependencies": {

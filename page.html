@@ -31,6 +31,8 @@
   dialog button { position: absolute; border: 0; background: none; color: inherit; font: 32px/1 -apple-system, sans-serif; padding: 16px; cursor: pointer; opacity: .75; }
   dialog button:hover { opacity: 1; }
   .close { top: 8px; right: 8px; } .prev { left: 8px; top: 50%; translate: 0 -50%; } .next { right: 8px; top: 50%; translate: 0 -50%; }
+  footer { max-width: 1400px; margin: 0 auto; padding: 0 24px 48px; color: var(--muted); font: 13px -apple-system, "Segoe UI", sans-serif; }
+  footer a { color: inherit; }
   :focus-visible { outline: 2px solid currentColor; outline-offset: 3px; }
   @media (max-width: 600px) {
     header { padding: 32px 16px 24px; } h1 { font-size: 30px; }
@@ -48,6 +50,7 @@
 <main>
 {{tiles}}
 </main>
+<footer><a href="https://rupert.xyz/impressum">Impressum</a> · <a href="https://rupert.xyz/datenschutz">Datenschutz</a></footer>
 <dialog id="view" aria-label="Bild">
   <img alt="">
   <p></p>
